@@ -1,0 +1,17 @@
+﻿@model IEnumerable<TestIT.Models.Question>
+@{
+    ViewData["Title"] = "Questions";
+}
+
+<table class="table">
+    <tr><td>№</td><td>Question</td><td>Answers</td></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Text</td>
+            <td>@item.Answers</td>
+
+        </tr>
+    }
+</table>

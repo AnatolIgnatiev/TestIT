@@ -25,6 +25,7 @@ namespace TestIT.Controllers
         public IActionResult AddNewTest()
         {
             var test = new Test();
+            test.Questions = db.Questions.ToList();
             return View(test);
         }
         [HttpPost]
@@ -33,6 +34,28 @@ namespace TestIT.Controllers
             db.Tests.Add(test);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id != null)
+            {
+                Test test = await db.Tests.Include(t => t.Questions).FirstOrDefaultAsync(q => q.TestId == id);
+                if (test?.Questions != null)
+                {
+                    return View(test.Questions);
+                }
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Details(Test test)
+        {
+            db.Tests.Add(test);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Details");
         }
 
         [HttpGet]
@@ -58,34 +81,34 @@ namespace TestIT.Controllers
         }
 
 
-        //[HttpGet]
-        //[ActionName("Delete")]
-        //public async Task<IActionResult> ConfirmDelete(int? id)
-        //{
-        //    if (id != null)
-        //    {
-        //        Test user = await db.Tests.FirstOrDefaultAsync(p => p.Id == id);
-        //        if (user != null)
-        //            return View(user);
-        //    }
-        //    return NotFound();
-        //}
+        [HttpGet]
+        [ActionName("Delete")]
+        public async Task<IActionResult> ConfirmDelete(int? id)
+        {
+            if (id != null)
+            {
+                Test user = await db.Tests.FirstOrDefaultAsync(p => p.TestId == id);
+                if (user != null)
+                    return View(user);
+            }
+            return NotFound();
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id != null)
-        //    {
-        //        Test user = await db.Tests.FirstOrDefaultAsync(p => p.Id == id);
-        //        if (user != null)
-        //        {
-        //            db.Tests.Remove(user);
-        //            await db.SaveChangesAsync();
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
-        //    return NotFound();
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id != null)
+            {
+                Test user = await db.Tests.FirstOrDefaultAsync(p => p.TestId == id);
+                if (user != null)
+                {
+                    db.Tests.Remove(user);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+            }
+            return NotFound();
+        }
 
         public IActionResult Privacy()
         {
