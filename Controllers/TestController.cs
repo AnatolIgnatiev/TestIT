@@ -24,8 +24,7 @@ namespace TestIT.Controllers
         [HttpGet]
         public IActionResult AddNewTest()
         {
-            var test = new Question();
-            test.Answers = db.Answers.ToList();
+            var test = new Test();
             return View(test);
         }
         [HttpPost]

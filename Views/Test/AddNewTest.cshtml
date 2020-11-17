@@ -1,38 +1,40 @@
 ﻿
-@model TestIT.Models.Question
+@model TestIT.Models.Test
 @{
-
-    ViewData["Title"] = "AddNewTest";
-
+    ViewData["Title"] = "All Tests";
 }
 
-    <form asp-action="AddNewTest" asp-controller="Test">
-        <div class="form-group">
-            <label asp-for="Text" class="control-label">Text</label>
-            <input type="text" asp-for="Text" class="form-control" />
-        </div>
+<form asp-action="AddNewTest" asp-controller="Test">
+    <table class="table">
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="TestName" class="control-label">TestName</label>
+                    <input type="text" asp-for="TestName" class="form-control" />
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="TestDescription" class="control-label">TestDescription</label>
+                    <input type="text" asp-for="TestDescription" class="form-control" />
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <a type="button" class="btn btn-secondary" asp-controller="Question" asp-action="AddNewQuestion">Add New Question</a>
+            </td>
+            <td>
+                <input type="submit" value="Save" class="btn btn-default" />
+            </td>
+        </tr>
 
-        <div class="form-group">
-            <label asp-for="MultipleAnswers">MultipleAnswers</label>
-            <input type="radio" id="MultipleAnswers" name="Multiple Answers" value="true" /><!--value="true"-->
+    </table>
 
-            <label asp-for="MultipleAnswers">SingleAnswer</label>
-            <input type="radio" id="SingleAnswer" name="Multiple Answers" checked /><!--value="false"-->
-        </div>
-        @foreach (var item in Model.Answers)// NullReferenceException (TestIT.Models.Question.Answers.get returned null.)
-        {
-            <div class="form-group">
-                <label asp-for="Answers" class="control-label">Answers</label>
-                <input type="checkbox" for= item. class="accept-policy" />
-                <input type="text" asp-for="Answers" class="form-control" />
-            </div>
-
-        }
-
-
-
-        <div class="form-group">
+    @*<div class="form-group">
             <input type="submit" value="Send" class="btn btn-secondary" />
-        </div>
-    </form>
+        </div>*@
+</form>
 

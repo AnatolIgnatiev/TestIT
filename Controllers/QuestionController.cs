@@ -20,6 +20,21 @@ namespace TestIT.Controllers
         {
                 return View(db.Questions.ToList());
         }
+        [HttpGet]
+        public IActionResult AddNewTest()
+        {
+            var test = new Question();
+            test.Answers = db.Answers.ToList();
+            return View(test);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddNewTest(Test test)
+        {
+            db.Tests.Add(test);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();
