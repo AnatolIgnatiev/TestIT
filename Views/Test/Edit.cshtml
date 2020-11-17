@@ -1,0 +1,23 @@
+﻿
+@model TestIT.Models.Test
+
+@{
+    ViewData["Title"] = "Edit Test";
+
+}
+<form asp-action="edit" asp-controller="Test" asp-route-id="@Model.TestId">
+    
+    <div class="form-group">
+        <label asp-for="Questions" class="control-label">Question</label>
+        <input type="text" asp-for="Questions" class="form-control" />
+    </div>
+    <!--
+    <div class="form-group">
+        <label asp-for="Questions.Answers" class="control-label">Answer</label>
+        <input type="text" asp-for="Questions.Answers" class="form-control" />
+    </div>
+        -->
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+</form>

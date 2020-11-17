@@ -1,0 +1,21 @@
+﻿@model IEnumerable<TestIT.Models.Test>
+@{
+    ViewData["Title"] = "All Tests";
+}
+
+
+<table class="table">
+    <tr><td>TestName</td><td>TestDescription</td></tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TestName</td>
+            <td>@item.TestDescription</td>
+            <td>
+                <a asp-action="Edit" asp-controller="Test" asp-route-id="@item.TestId">Edit</a>
+                <a asp-action="Delete" asp-controller="Test" asp-route-id="@item.TestId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+<a type="button" class="btn btn-secondary" asp-action="AddNewTest">Add New Test</a>

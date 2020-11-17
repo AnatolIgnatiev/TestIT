@@ -1,0 +1,35 @@
+﻿<!--//model TestIT.Models.Test-->
+@model IEnumerable<TestIT.Models.Question>
+@{
+    ViewData["Title"] = "Questions";
+}
+
+<table class="table">
+    <tr><td>№</td><td>Question</td><td>Answers</td></tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Id</td>
+    <td>@item.Text</td>
+    <td>@item.Answers</td>
+    @*<td>
+        <a asp-action="Edit" asp-controller="Test" asp-route-id="@item.Id">Edit</a>
+        <a asp-action="Delete" asp-controller="Test" asp-route-id="@item.Id">Delete</a>
+    </td>*@
+</tr>
+    }
+</table>
+@*<a type="button" class="btn btn-secondary" asp-action="AddNewTest">Add New Test</a>*@
+
+@*<h2>Question # @Model.Id</h2>
+    <div>
+        <dl class="dl-horizontal">
+
+            <dt>Question</dt>
+            <dd>Model.Question</dd>
+
+            <dt>Answer</dt>
+            <dd>Model.Question.Answers</dd>
+        </dl>
+    </div>*@
+

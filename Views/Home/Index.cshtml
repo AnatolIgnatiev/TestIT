@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>links to Tests List etc.</p>
+<table class="table">
+    <tr>
+        <td>
+            <a type="button" class="btn-group-vertical" asp-action="Index" asp-controller="Test" asp-route-id="Test">Tests</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a type="button" class="btn-group-vertical" asp-action="Index" asp-controller="Question" asp-route-id="Question">Questions</a>
+        </td>
+    </tr>
+</table>
+
+@**@

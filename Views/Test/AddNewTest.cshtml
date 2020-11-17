@@ -1,0 +1,38 @@
+﻿
+@model TestIT.Models.Question
+@{
+
+    ViewData["Title"] = "AddNewTest";
+
+}
+
+    <form asp-action="AddNewTest" asp-controller="Test">
+        <div class="form-group">
+            <label asp-for="Text" class="control-label">Text</label>
+            <input type="text" asp-for="Text" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MultipleAnswers">MultipleAnswers</label>
+            <input type="radio" id="MultipleAnswers" name="Multiple Answers" value="true" /><!--value="true"-->
+
+            <label asp-for="MultipleAnswers">SingleAnswer</label>
+            <input type="radio" id="SingleAnswer" name="Multiple Answers" checked /><!--value="false"-->
+        </div>
+        @foreach (var item in Model.Answers)// NullReferenceException (TestIT.Models.Question.Answers.get returned null.)
+        {
+            <div class="form-group">
+                <label asp-for="Answers" class="control-label">Answers</label>
+                <input type="checkbox" for= item. class="accept-policy" />
+                <input type="text" asp-for="Answers" class="form-control" />
+            </div>
+
+        }
+
+
+
+        <div class="form-group">
+            <input type="submit" value="Send" class="btn btn-secondary" />
+        </div>
+    </form>
+
